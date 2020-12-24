@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <title>SpringImageApp</title>
+</head>
+<body>
+<div>
+    <table>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.firstName}"></td>
+        <td th:text="${user.lastName}"></td>
+        <td th:text="${user.email}"></td>
+        <td ><a th:href="@{/edit?id=}+${user.id}" >Edit</a></td>
+        <td ><a th:href="@{/delete?id=}+${user.id}">Delete</a></td>
+    </tr>
+    </table>
+    <a href="/add">Add</a>
+</div>
+</body>
+</html>
