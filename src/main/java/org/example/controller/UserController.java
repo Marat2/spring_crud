@@ -13,54 +13,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/admin")
 public class UserController {
     @Autowired
     UserService userService;
     Logger logger = LoggerFactory.getLogger(getClass());
 
-    @RequestMapping(value = "hello", method = RequestMethod.GET)
-    public String printWelcome(ModelMap model) {
-        List<String> messages = new ArrayList<>();
-        messages.add("Hello!");
-        messages.add("I'm Spring MVC-SECURITY application");
-        messages.add("5.2.0 version by sep'19 ");
-        model.addAttribute("messages", messages);
-        return "hello";
-    }
-
-    @RequestMapping(value = "login", method = RequestMethod.GET)
-    public String loginPage() {
-        //System.out.println("1user : "+ userService.loadUserByUsername("admin").toString());
-        System.out.println("1user2 : "+ userService.loadUserByUsername("ADMIN").getAuthorities().toString());
-        return "login";
-    }
-
-    //---------------------------------------------------------------------------------------------------------------------
-    /*@RequestMapping("/")
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
     public String getIndex(ModelMap model){
         List<User> users = userService.listUsers();
-        logger.info("Number of users : "+users.toString());
         model.addAttribute("users",users);
         return "index";
     }
-    @RequestMapping("/add")
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addUser(){
         return "add";
     }
     @PostMapping(path = "/save",consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     public String saveUser(User user){
-        System.out.println("eteetet" +user.toString());
         userService.add(user);
-        return "redirect:/";
+        return "redirect:/admin/all";
     }
 
-    @RequestMapping("/edit")
-    public String editUser(@RequestParam Long id, ModelMap model){
+    @RequestMapping(value = "/edit", method = RequestMethod.GET)
+    public String editUser(@RequestParam Integer id, ModelMap model){
         User user = userService.userById(id);
         model.addAttribute("user",user);
         return "edit";
@@ -68,14 +47,12 @@ public class UserController {
 
     @PostMapping(path = "/update",consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     public String updateUser(User user){
-        System.out.println("eteetet" +user.toString());
         userService.update(user.getId(),user);
-        return "redirect:/";
+        return "redirect:/admin/all";
     }
-    @RequestMapping("/delete")
-    public String deleteUser(@RequestParam Long id){
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    public String deleteUser(@RequestParam Integer id){
         userService.delete(id);
-        return "redirect:/";
-    }*/
-
+        return "redirect:/admin/all";
+    }
 }

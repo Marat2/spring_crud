@@ -6,9 +6,10 @@
 </head>
 <body>
 <div>
-    <form  th:action="@{/update}" th:object="${user}" method="post">
-        <input type="text" th:field="*{firstName}" />
-        <input type="text" th:field="*{lastName}" />
+    <div><a href="/logout">Exit</a></div>
+    <form  th:action="@{/admin/update}" th:object="${user}" method="post">
+        <input type="text" th:field="*{username}" />
+        <input type="text" th:field="*{last_name}" />
         <input type="text" th:field="*{email}" />
         <input type="hidden" th:field="*{id}" />
         <button type="submit" >Save</button>

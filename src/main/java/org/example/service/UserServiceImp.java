@@ -28,11 +28,11 @@ public class UserServiceImp implements UserService, UserDetailsService {
         userDao.add(user);
     }
     @Transactional
-    public void update(Long id, User user) {
+    public void update(Integer id, User user) {
         userDao.update(id,user);
     }
     @Transactional
-    public void delete(Long id) {
+    public void delete(Integer id) {
         userDao.delete(id);
     }
 
@@ -42,7 +42,7 @@ public class UserServiceImp implements UserService, UserDetailsService {
 
 
 
-    public User userById(Long id) {
+    public User userById(Integer id) {
         return userDao.userById(id);
     }
     @Transactional
@@ -55,5 +55,11 @@ public class UserServiceImp implements UserService, UserDetailsService {
         }
         //System.out.println("1user : "+ user.toString());
         return SecurityUser.fromUser(user);
+    }
+
+    @Transactional
+    public User getByName(String s){
+        User user = userDao.loadUserByUsername(s);
+        return user;
     }
 }

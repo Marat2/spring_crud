@@ -20,7 +20,7 @@ public class UserDaoImp implements UserDao{
         sessionFactory.getCurrentSession().save(user);
     }
     @Transactional
-    public void update(Long id, User user) {
+    public void update(Integer id, User user) {
         User getUser = userById(id);
         getUser.setUsername(user.getUsername());
         getUser.setLast_name(user.getLast_name());
@@ -28,7 +28,7 @@ public class UserDaoImp implements UserDao{
         sessionFactory.getCurrentSession().update(getUser);
     }
     @Transactional
-    public void delete(Long id) {
+    public void delete(Integer id) {
         sessionFactory.getCurrentSession().delete(userById(id));
     }
     @Transactional
@@ -37,7 +37,7 @@ public class UserDaoImp implements UserDao{
         return query.getResultList();
     }
     @Transactional
-    public User userById(Long id) {
+    public User userById(Integer id) {
         return (User)sessionFactory.getCurrentSession().createQuery("from User as u where u.id =:id").
                 setParameter("id" ,id).getSingleResult();
     }
