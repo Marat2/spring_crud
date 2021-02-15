@@ -20,8 +20,12 @@ import java.util.Set;
 @Service
 public class UserServiceImp implements UserService, UserDetailsService {
 
+
+    private final UserDao userDao;
     @Autowired
-    private UserDao userDao;
+    public UserServiceImp(UserDao userDao) {
+        this.userDao = userDao;
+    }
 
     @Transactional
     public void add(User user) {

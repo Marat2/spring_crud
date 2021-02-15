@@ -18,9 +18,14 @@ import java.util.List;
 @Controller
 @RequestMapping("/admin")
 public class UserController {
+
+    private final UserService userService;
     @Autowired
-    UserService userService;
-    Logger logger = LoggerFactory.getLogger(getClass());
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public String getIndex(ModelMap model){

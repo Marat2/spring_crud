@@ -21,12 +21,10 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
-    //private final SuccessUserHandler successUserHandler;
 
     @Autowired
-    public SecurityConfig(@Qualifier("userServiceImp") UserDetailsService userDetailsService/*, SuccessUserHandler successUserHandler*/) {
+    public SecurityConfig(@Qualifier("userServiceImp") UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
-        //this.successUserHandler = successUserHandler;
     }
 
     @Override

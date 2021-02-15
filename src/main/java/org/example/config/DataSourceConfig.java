@@ -21,8 +21,13 @@ import java.util.Properties;
 @EnableTransactionManagement
 @ComponentScan(value = "org.example")
 public class DataSourceConfig {
+
+    private final Environment env;
+
     @Autowired
-    private Environment env;
+    public DataSourceConfig(Environment env) {
+        this.env = env;
+    }
 
     @Bean
     public DataSource getDataSource() {
@@ -42,7 +47,6 @@ public class DataSourceConfig {
         Properties props=new Properties();
         props.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
         props.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
-        //props.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
         factoryBean.setHibernateProperties(props);
         factoryBean.setAnnotatedClasses(User.class, Role.class);
 

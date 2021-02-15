@@ -1,8 +1,6 @@
 package org.example.dao;
 
 import org.example.domain.User;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import java.util.List;
 
 public interface UserDao {
